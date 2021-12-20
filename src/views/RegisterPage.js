@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
-//import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
-//import {addContact} from '../../redux/phonebook/phonebook-operation';
-//import { getContacts } from '../../redux/phonebook/phonebook-selectors';
+import authOperations from '../redux/auth/auth-operation';
 import Button from '../components/Button';
 
 export default function RegisterPage() {
+  const dispatch = useDispatch();
+
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -23,6 +24,8 @@ export default function RegisterPage() {
 
   const handleSubmit = e => {
     e.preventDefault();
+
+    dispatch(authOperations.register({ name, email, password }));
     reset();
   };
 

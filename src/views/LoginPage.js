@@ -1,8 +1,12 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import authOperations from '../redux/auth/auth-operation';
 
 import Button from '../components/Button';
 
 export default function LoginPage() {
+  const dispatch = useDispatch();
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -16,6 +20,7 @@ export default function LoginPage() {
 
   const handleSubmit = e => {
     e.preventDefault();
+    dispatch(authOperations.logIn({ email, password }));
     reset();
   };
 
@@ -23,6 +28,7 @@ export default function LoginPage() {
     setEmail('');
     setPassword('');
   };
+
   return (
     <div>
       <h1>Страница логина</h1>

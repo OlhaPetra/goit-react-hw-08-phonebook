@@ -9,7 +9,7 @@ import s from './ContactForm.module.css';
 
 function ContactForm() {
   const [name, setName] = useState('');
-  const [phone, setPhone] = useState('');
+  const [number, setNumber] = useState('');
 
   const contacts = useSelector(getContacts);
   const dispatch = useDispatch();
@@ -17,8 +17,8 @@ function ContactForm() {
   const nameHandleChange = e => {
     setName(e.target.value);
   };
-  const phoneHandleChange = e => {
-    setPhone(e.target.value);
+  const numberHandleChange = e => {
+    setNumber(e.target.value);
   };
 
   const handleSubmit = e => {
@@ -34,13 +34,13 @@ function ContactForm() {
       return;
     }
 
-    dispatch(addContact({ name, phone }));
+    dispatch(addContact({ name, number }));
     reset();
   };
 
   const reset = () => {
     setName('');
-    setPhone('');
+    setNumber('');
   };
 
   return (
@@ -63,11 +63,11 @@ function ContactForm() {
         <input
           className={s.input}
           type="tel"
-          name="phone"
-          value={phone}
+          name="number"
+          value={number}
           pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
           title="Номер телефона должен состоять цифр и может содержать пробелы, тире, круглые скобки и может начинаться с +"
-          onChange={phoneHandleChange}
+          onChange={numberHandleChange}
           required
         />
       </label>

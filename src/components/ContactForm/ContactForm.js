@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import {addContact} from '../../redux/phonebook/phonebook-operation';
+import { addContact } from '../../redux/phonebook/phonebook-operation';
 import { getContacts } from '../../redux/phonebook/phonebook-selectors';
 import Button from '../Button';
 import s from './ContactForm.module.css';

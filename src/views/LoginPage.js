@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import authOperations from '../redux/auth/auth-operation';
-
-import Button from '../components/Button';
+//import Button from '../components/Button';
+import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
+import { pink } from '@mui/material/colors';
 
 export default function LoginPage() {
   const dispatch = useDispatch();
@@ -33,27 +35,29 @@ export default function LoginPage() {
     <div>
       <h1>Страница логина</h1>
       <form onSubmit={handleSubmit} autoComplete="off">
-        <label>
-          E-mail
-          <input
-            type="email"
-            name="email"
-            value={email}
-            onChange={emailHandleChange}
-            required
-          />
-        </label>
-        <label>
-          Password
-          <input
-            type="password"
-            name="password"
-            value={password}
-            onChange={passwordHandleChange}
-            required
-          />
-        </label>
-        <Button type="submit" title="Enter" />
+        <TextField
+          id="outlined-basic"
+          label="E-mail"
+          variant="outlined"
+          type="email"
+          name="email"
+          value={email}
+          onChange={emailHandleChange}
+          required
+        />
+        <TextField
+          id="outlined-basic"
+          label="Password"
+          variant="outlined"
+          type="password"
+          name="password"
+          value={password}
+          onChange={passwordHandleChange}
+          required
+        />
+        <Button sx={{ bgcolor: pink[200] }} variant="contained" type="submit">
+          Log in
+        </Button>
       </form>
     </div>
   );

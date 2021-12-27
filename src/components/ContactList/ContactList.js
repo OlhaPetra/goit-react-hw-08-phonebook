@@ -1,6 +1,11 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
+
+import Button from '@mui/material/Button';
+import DeleteIcon from '@mui/icons-material/Delete';
+import { pink } from '@mui/material/colors';
+
 import {
   deleteContact,
   fetchContacts,
@@ -30,13 +35,15 @@ const ContactList = () => {
         {contacts.map(({ id, name, number }) => (
           <li key={id} className={s.item}>
             <ContactItem name={name} number={number} />
-            <button
+            <Button
+              variant="outlined"
+              sx={{ color: pink[200] }}
+              startIcon={<DeleteIcon />}
               type="button"
-              onClick={() => onDeleteContact(id)}
-              className={s.button}
+              Click={() => onDeleteContact(id)}
             >
               Delete
-            </button>
+            </Button>
           </li>
         ))}
       </ul>

@@ -1,8 +1,12 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 
+import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
+import { pink } from '@mui/material/colors';
+
 import authOperations from '../redux/auth/auth-operation';
-import Button from '../components/Button';
+//import Button from '../components/Button';
 
 export default function RegisterPage() {
   const dispatch = useDispatch();
@@ -39,7 +43,40 @@ export default function RegisterPage() {
     <div>
       <h1>Страница регистрации</h1>
       <form onSubmit={handleSubmit} autoComplete="off">
-        <label>
+        <TextField
+          id="outlined-basic"
+          label="Name"
+          type="text"
+          name="name"
+          value={name}
+          onChange={nameHandleChange}
+          required
+        />
+        <TextField
+          id="outlined-basic"
+          label="E-mail"
+          variant="outlined"
+          type="email"
+          name="email"
+          value={email}
+          onChange={emailHandleChange}
+          required
+        />
+        <TextField
+          id="outlined-basic"
+          label="Password"
+          variant="outlined"
+          type="password"
+          name="password"
+          value={password}
+          onChange={passwordHandleChange}
+          required
+        />
+        <Button sx={{ bgcolor: pink[200] }} variant="contained" type="submit">
+          Log in
+        </Button>
+
+        {/* <label>
           Name
           <input
             type="text"
@@ -69,7 +106,7 @@ export default function RegisterPage() {
             required
           />
         </label>
-        <Button type="submit" title="Send" />
+        <Button type="submit" title="Send" /> */}
       </form>
     </div>
   );

@@ -75,38 +75,6 @@ export default function RegisterPage() {
         <Button sx={{ bgcolor: pink[200] }} variant="contained" type="submit">
           Log in
         </Button>
-
-        {/* <label>
-          Name
-          <input
-            type="text"
-            name="name"
-            value={name}
-            onChange={nameHandleChange}
-            required
-          />
-        </label>
-        <label>
-          E-mail
-          <input
-            type="email"
-            name="email"
-            value={email}
-            onChange={emailHandleChange}
-            required
-          />
-        </label>
-        <label>
-          Password
-          <input
-            type="password"
-            name="password"
-            value={password}
-            onChange={passwordHandleChange}
-            required
-          />
-        </label>
-        <Button type="submit" title="Send" /> */}
       </form>
     </div>
   );

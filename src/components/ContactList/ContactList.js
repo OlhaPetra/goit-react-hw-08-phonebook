@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 
 import Button from '@mui/material/Button';
 import DeleteIcon from '@mui/icons-material/Delete';
-import { pink } from '@mui/material/colors';
 
 import {
   deleteContact,
@@ -37,10 +36,9 @@ const ContactList = () => {
             <ContactItem name={name} number={number} />
             <Button
               variant="outlined"
-              sx={{ color: pink[200] }}
               startIcon={<DeleteIcon />}
               type="button"
-              Click={() => onDeleteContact(id)}
+              onClick={() => onDeleteContact(id)}
             >
               Delete
             </Button>

@@ -1,6 +1,8 @@
 .list {
   width: 450px;
   padding: 0;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .item {

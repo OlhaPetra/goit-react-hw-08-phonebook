@@ -1,23 +1,17 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import authOperations from '../../redux/auth/auth-operation';
 
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
-import { pink } from '@mui/material/colors';
+import s from './LoginPage.module.css';
 
-import authOperations from '../redux/auth/auth-operation';
-//import Button from '../components/Button';
-
-export default function RegisterPage() {
+export default function LoginPage() {
   const dispatch = useDispatch();
 
-  const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const nameHandleChange = e => {
-    setName(e.target.value);
-  };
   const emailHandleChange = e => {
     setEmail(e.target.value);
   };
@@ -28,30 +22,19 @@ export default function RegisterPage() {
 
   const handleSubmit = e => {
     e.preventDefault();
-
-    dispatch(authOperations.register({ name, email, password }));
+    dispatch(authOperations.logIn({ email, password }));
     reset();
   };
 
   const reset = () => {
-    setName('');
     setEmail('');
     setPassword('');
   };
 
   return (
     <div>
-      <h1>Страница регистрации</h1>
-      <form onSubmit={handleSubmit} autoComplete="off">
-        <TextField
-          id="outlined-basic"
-          label="Name"
-          type="text"
-          name="name"
-          value={name}
-          onChange={nameHandleChange}
-          required
-        />
+      <h1 className={s.title}>Log In to Your Account</h1>
+      <form className={s.form} onSubmit={handleSubmit} autoComplete="off">
         <TextField
           id="outlined-basic"
           label="E-mail"
@@ -61,6 +44,7 @@ export default function RegisterPage() {
           value={email}
           onChange={emailHandleChange}
           required
+          className={s.field}
         />
         <TextField
           id="outlined-basic"
@@ -71,8 +55,9 @@ export default function RegisterPage() {
           value={password}
           onChange={passwordHandleChange}
           required
+          className={s.field}
         />
-        <Button sx={{ bgcolor: pink[200] }} variant="contained" type="submit">
+        <Button variant="contained" type="submit" size="large">
           Log in
         </Button>
       </form>

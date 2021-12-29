@@ -1,3 +1,7 @@
+.title {
+  margin-top: 80px;
+  text-align: center;
+}
 .form {
   max-width: 400px;
   margin-left: auto;

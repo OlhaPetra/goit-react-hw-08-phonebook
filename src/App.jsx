@@ -7,9 +7,9 @@ import { Routes, Route } from 'react-router-dom';
 import authOperations from './redux/auth/auth-operation';
 import { getFetchingCurrentUser } from './redux/auth/auth-selectors';
 
-import AppBar from './components/AppBar/AppBar';
-import Container from './components/Container/Container';
-import Loading from './components/Loading/Loading';
+import AppBar from './components/AppBar';
+import Container from './components/Container';
+import Loading from './components/Loading';
 import PrivateRoute from './views/PrivateRoute';
 import PublicRoute from './views/PublicRoute';
 

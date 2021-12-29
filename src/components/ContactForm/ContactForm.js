@@ -4,7 +4,10 @@ import PropTypes from 'prop-types';
 
 import { addContact } from '../../redux/phonebook/phonebook-operation';
 import { getContacts } from '../../redux/phonebook/phonebook-selectors';
-import Button from '../Button';
+//import Button from '../Button';
+
+import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
 import s from './ContactForm.module.css';
 
 function ContactForm() {
@@ -45,33 +48,31 @@ function ContactForm() {
 
   return (
     <form onSubmit={handleSubmit} className={s.form}>
-      <label className={s.label}>
-        Name
-        <input
-          className={s.input}
-          type="text"
-          name="name"
-          value={name}
-          pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-          title="Имя может состоять только из букв, апострофа, тире и пробелов. Например Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan и т. п."
-          onChange={nameHandleChange}
-          required
-        />
-      </label>
-      <label className={s.label}>
-        Number
-        <input
-          className={s.input}
-          type="tel"
-          name="number"
-          value={number}
-          pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
-          title="Номер телефона должен состоять цифр и может содержать пробелы, тире, круглые скобки и может начинаться с +"
-          onChange={numberHandleChange}
-          required
-        />
-      </label>
-      <Button title="Add contact" />
+      <TextField
+        id="outlined-basic"
+        label="Name"
+        type="text"
+        name="name"
+        value={name}
+        onChange={nameHandleChange}
+        pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
+        required
+        className={s.field}
+      />
+      <TextField
+        id="outlined-basic"
+        label="Number"
+        type="tel"
+        name="number"
+        value={number}
+        onChange={numberHandleChange}
+        pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
+        required
+        className={s.field}
+      />
+      <Button variant="contained" type="submit" size="large">
+        Add contact
+      </Button>
     </form>
   );
 }

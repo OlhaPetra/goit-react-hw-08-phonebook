@@ -36,7 +36,6 @@ export default function LoginPage() {
       <h1 className={s.title}>Log In to Your Account</h1>
       <form className={s.form} onSubmit={handleSubmit} autoComplete="off">
         <TextField
-          id="outlined-basic"
           label="E-mail"
           variant="outlined"
           type="email"
@@ -47,7 +46,6 @@ export default function LoginPage() {
           className={s.field}
         />
         <TextField
-          id="outlined-basic"
           label="Password"
           variant="outlined"
           type="password"

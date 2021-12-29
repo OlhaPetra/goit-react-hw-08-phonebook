@@ -50,7 +50,7 @@ export default function RegisterPage() {
       </p>
       <form className={s.form} onSubmit={handleSubmit} autoComplete="off">
         <TextField
-          id="outlined-basic"
+          variant="outlined"
           label="Name"
           type="text"
           name="name"
@@ -60,7 +60,6 @@ export default function RegisterPage() {
           className={s.field}
         />
         <TextField
-          id="outlined-basic"
           label="E-mail"
           variant="outlined"
           type="email"
@@ -71,7 +70,6 @@ export default function RegisterPage() {
           className={s.field}
         />
         <TextField
-          id="outlined-basic"
           label="Password"
           variant="outlined"
           type="password"

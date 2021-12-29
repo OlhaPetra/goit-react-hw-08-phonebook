@@ -35,7 +35,7 @@ const ContactList = () => {
           <li key={id} className={s.item}>
             <ContactItem name={name} number={number} />
             <Button
-              variant="outlined"
+              variant="contained"
               startIcon={<DeleteIcon />}
               type="button"
               onClick={() => onDeleteContact(id)}

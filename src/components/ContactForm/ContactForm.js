@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 
@@ -9,19 +9,43 @@ import { getContacts } from '../../redux/phonebook/phonebook-selectors';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import s from './ContactForm.module.css';
+import NumberFormat from 'react-number-format';
 
 function ContactForm() {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
 
+  //validation
+  const [nameDirty, setNameDirty] = useState(false);
+  const [nameError, setNameError] = useState('Enter your name, please');
+  const [numberDirty, setNumberDirty] = useState(false);
+  const [numberError, setNumberError] = useState('Enter your number, please');
+  const [validForm, setValidForm] = useState(false);
+
   const contacts = useSelector(getContacts);
   const dispatch = useDispatch();
 
+  useEffect(() => {
+    if (nameError || numberError) {
+      setValidForm(false);
+    } else {
+      setValidForm(true);
+    }
+  }, [nameError, numberError]);
+
   const nameHandleChange = e => {
     setName(e.target.value);
+    const re = /^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$/;
+    if (!re.test(String(e.target.value).toLocaleLowerCase())) {
+      setNameError('Enter correct name');
+    } else {
+      setNameError('');
+    }
   };
+
   const numberHandleChange = e => {
     setNumber(e.target.value);
+    setNumberError('');
   };
 
   const handleSubmit = e => {
@@ -46,31 +70,60 @@ function ContactForm() {
     setNumber('');
   };
 
+  const blurHandler = e => {
+    // eslint-disable-next-line default-case
+    switch (e.target.name) {
+      case 'name':
+        setNameDirty(true);
+        break;
+      case 'number':
+        setNumberDirty(true);
+        break;
+    }
+  };
+
   return (
     <form onSubmit={handleSubmit} className={s.form}>
+      {nameDirty && nameError && (
+        <div style={{ color: 'red' }}>{nameError}</div>
+      )}
       <TextField
-        id="outlined-basic"
+        variant="outlined"
         label="Name"
         type="text"
         name="name"
         value={name}
-        onChange={nameHandleChange}
-        pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
+        onChange={e => nameHandleChange(e)}
+        onBlur={blurHandler}
         required
         className={s.field}
       />
-      <TextField
-        id="outlined-basic"
+      {numberDirty && numberError && (
+        <div style={{ color: 'red' }}>{numberError}</div>
+      )}
+
+      <NumberFormat
+        variant="outlined"
         label="Number"
         type="tel"
         name="number"
         value={number}
-        onChange={numberHandleChange}
-        pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
+        onChange={e => numberHandleChange(e)}
+        onBlur={blurHandler}
         required
         className={s.field}
+        customInput={TextField}
+        /*        allowEmptyFormatting
+ format="+38 (###) ###-##-##"
+        mask="_" */
       />
-      <Button variant="contained" type="submit" size="large">
+
+      <Button
+        disabled={!validForm}
+        variant="contained"
+        type="submit"
+        size="large"
+      >
         Add contact
       </Button>
     </form>
